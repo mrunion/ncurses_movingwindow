@@ -38,27 +38,35 @@ int main(int argc, char *argv[]) {
   while((ch = getch()) != KEY_F(1)) {
     switch(ch) {
       case KEY_LEFT:
-        create_box(&win, FALSE);
-        --win.startx;
-        create_box(&win, TRUE);
+        if (win.startx > 0) {
+          create_box(&win, FALSE);
+          --win.startx;
+          create_box(&win, TRUE);
+        }
         break;
 
       case KEY_RIGHT:
-        create_box(&win, FALSE);
-        ++win.startx;
-        create_box(&win, TRUE);
+        if (win.startx < (COLS - win.width - 1)) {
+          create_box(&win, FALSE);
+          ++win.startx;
+          create_box(&win, TRUE);
+        }
         break;
 
       case KEY_UP:
-        create_box(&win, FALSE);
-        --win.starty;
-        create_box(&win, TRUE);
+        if (win.starty > 0) {
+          create_box(&win, FALSE);
+          --win.starty;
+          create_box(&win, TRUE);
+        }
         break;
 
       case KEY_DOWN:
-        create_box(&win, FALSE);
-        ++win.starty;
-        create_box(&win, TRUE);
+        if (win.starty < (LINES - win.height - 1)) {
+          create_box(&win, FALSE);
+          ++win.starty;
+          create_box(&win, TRUE);
+        }
         break;
     }
   }
